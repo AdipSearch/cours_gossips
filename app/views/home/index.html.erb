@@ -1,0 +1,60 @@
+
+
+<ul>
+	<!--On vérifie que l'on a une session avec ce user, ou bien si c'est la première fois que le User vient sur ce website-->
+	<%if moussaillon_signed_in?%> 
+
+		<h1>Mon compte</h1>
+			<li>
+				<%=link_to 'Sign Out', destroy_moussaillon_session_path, method: :delete %>
+			</li>
+			<li>
+				<%= current_moussaillon.email%>
+			</li>
+			<li>
+				<%= link_to 'Edit Account', edit_moussaillon_registration_path%>
+			</li>
+			<li>
+				<%= link_to 'Nouveau Gossip', new_gossip_path%>
+			</li>
+		<h1>Les Gossips</h1>
+			<div class ="affiche">
+			<table>
+			  <tr>
+			  	<th>Username</th>
+			    <th>Titre</th>
+			    <th>Gossip</th>
+			    <th>Date de création</th>
+			    <th>Supprimer?</th>
+			  </tr>
+
+			  <% @gossips.each do |gossip| %>
+			    <tr>
+			      <td><%= gossip.moussaillon.username%> </td>
+			      <td><%= gossip.title %> </td>
+			      <td><%= gossip.content %> </td>
+			      <td><%= gossip.created_at.strftime("%d %b. %Y") %> </td>
+			      
+			      <%if current_moussaillon.id==gossip.moussaillon.id%>
+			      
+			      
+			      <td><%= link_to 'supprimer le gossip', gossip_path(gossip), method: :delete%></td>
+			      <%else%>
+			      
+			      <%end%>
+
+			     
+			    </tr>
+  				<% end %>
+			</table>
+		</div>
+	
+	<%else%>
+		<p class="invitation">
+			Hey bro <%= link_to 'connecte-toi', new_moussaillon_session_path %> ou <%= link_to 'inscris-toi', new_moussaillon_registration_path%> !
+		</p>
+		
+	<% end %>
+	
+</ul>
+

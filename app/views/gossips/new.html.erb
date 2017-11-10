@@ -1,0 +1,12 @@
+<h1>Mon nouveau gossip</h1>
+
+<%= form_tag (gossips_path) do%>
+
+<%= label_tag 'title', 'Titre:'%>
+<%= text_field_tag 'gossip[title]'%>
+
+<%= label_tag 'content', 'Raconter:'%>
+<%= text_field_tag 'gossip[content]'%>
+
+<%=submit_tag 'Raconter!'%>
+<%end%>

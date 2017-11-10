@@ -1,0 +1,32 @@
+<h1>Mon compte</h1>
+			<li>
+				<%=link_to 'Sign Out', destroy_moussaillon_session_path, method: :delete %>
+			</li>
+			<li>
+				<%= current_moussaillon.email%>
+			</li>
+			<li>
+				<%= link_to 'Edit Account', edit_moussaillon_registration_path%>
+			</li>
+			<li>
+				<%= link_to 'Nouveau Gossip', new_gossip_path%>
+			</li>
+		<h1>Les Gossips</h1>
+			<table class="lesgossips">
+			  <tr>
+			    <th>Titre</th>
+			    <th>Gossip</th>
+			    <th>Date de création</th>
+			  </tr>
+
+			  <% @gossips.each do |gossip| %>
+			    <tr>
+			      <td><%= gossip.moussaillon.username%></td>
+			      <td><%= gossip.title %></td>
+			      <td><%= gossip.content %></td>
+			      <td><%= gossip.created_at %> </td>
+
+			     
+			    </tr>
+  				<% end %>
+			</table>

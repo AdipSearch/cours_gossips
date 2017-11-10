@@ -1,0 +1,256 @@
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "gossips"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (65.6ms)[0m  [1m[35mCREATE TABLE "gossips" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "creation_date" date, "moussaillon_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (65.4ms)[0m  [1m[35mCREATE  INDEX "index_gossips_on_moussaillon_id" ON "gossips" ("moussaillon_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "moussaillons"[0m
+  [1m[35m (65.7ms)[0m  [1m[35mCREATE TABLE "moussaillons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "username" varchar, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (91.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_moussaillons_on_email" ON "moussaillons" ("email")[0m
+  [1m[35m (0.3ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_moussaillons_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_moussaillons_on_email' AND type='index'
+[0m
+  [1m[35m (65.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_moussaillons_on_reset_password_token" ON "moussaillons" ("reset_password_token")[0m
+  [1m[35m (65.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (78.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20171107130736)[0m
+  [1m[35m (52.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20171107121327);
+
+[0m
+  [1m[35m (91.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2017-11-08 19:01:23.629411"], ["updated_at", "2017-11-08 19:01:23.629411"]]
+  [1m[35m (52.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.765354', '2017-11-08 19:01:23.765354', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.765354', '2017-11-08 19:01:23.765354', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.769877', '2017-11-08 19:01:23.769877', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.769877', '2017-11-08 19:01:23.769877', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.878530', '2017-11-08 19:01:23.878530', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.878530', '2017-11-08 19:01:23.878530', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.880437', '2017-11-08 19:01:23.880437', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.880437', '2017-11-08 19:01:23.880437', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.885738', '2017-11-08 19:01:23.885738', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.885738', '2017-11-08 19:01:23.885738', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.888257', '2017-11-08 19:01:23.888257', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.888257', '2017-11-08 19:01:23.888257', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.895114', '2017-11-08 19:01:23.895114', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.895114', '2017-11-08 19:01:23.895114', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.896853', '2017-11-08 19:01:23.896853', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:01:23.896853', '2017-11-08 19:01:23.896853', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:03.940406', '2017-11-08 19:03:03.940406', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:03.940406', '2017-11-08 19:03:03.940406', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:03.944437', '2017-11-08 19:03:03.944437', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:03.944437', '2017-11-08 19:03:03.944437', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.062216', '2017-11-08 19:03:04.062216', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.062216', '2017-11-08 19:03:04.062216', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.063736', '2017-11-08 19:03:04.063736', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.063736', '2017-11-08 19:03:04.063736', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.068499', '2017-11-08 19:03:04.068499', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.068499', '2017-11-08 19:03:04.068499', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.069552', '2017-11-08 19:03:04.069552', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.069552', '2017-11-08 19:03:04.069552', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.073689', '2017-11-08 19:03:04.073689', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.073689', '2017-11-08 19:03:04.073689', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.074935', '2017-11-08 19:03:04.074935', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:04.074935', '2017-11-08 19:03:04.074935', 298486374)[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.036420', '2017-11-08 19:03:31.036420', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.036420', '2017-11-08 19:03:31.036420', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.041126', '2017-11-08 19:03:31.041126', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.041126', '2017-11-08 19:03:31.041126', 298486374)[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.160184', '2017-11-08 19:03:31.160184', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.160184', '2017-11-08 19:03:31.160184', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.162267', '2017-11-08 19:03:31.162267', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.162267', '2017-11-08 19:03:31.162267', 298486374)[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.169272', '2017-11-08 19:03:31.169272', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.169272', '2017-11-08 19:03:31.169272', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.170591', '2017-11-08 19:03:31.170591', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.170591', '2017-11-08 19:03:31.170591', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.175711', '2017-11-08 19:03:31.175711', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.175711', '2017-11-08 19:03:31.175711', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.178194', '2017-11-08 19:03:31.178194', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:31.178194', '2017-11-08 19:03:31.178194', 298486374)[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.857095', '2017-11-08 19:03:37.857095', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.857095', '2017-11-08 19:03:37.857095', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.861616', '2017-11-08 19:03:37.861616', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.861616', '2017-11-08 19:03:37.861616', 298486374)[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.953190', '2017-11-08 19:03:37.953190', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.953190', '2017-11-08 19:03:37.953190', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.954257', '2017-11-08 19:03:37.954257', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.954257', '2017-11-08 19:03:37.954257', 298486374)[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.960171', '2017-11-08 19:03:37.960171', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.960171', '2017-11-08 19:03:37.960171', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.962074', '2017-11-08 19:03:37.962074', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.962074', '2017-11-08 19:03:37.962074', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.968127', '2017-11-08 19:03:37.968127', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.968127', '2017-11-08 19:03:37.968127', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.969700', '2017-11-08 19:03:37.969700', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:03:37.969700', '2017-11-08 19:03:37.969700', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.567262', '2017-11-08 19:04:24.567262', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.567262', '2017-11-08 19:04:24.567262', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.570507', '2017-11-08 19:04:24.570507', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.570507', '2017-11-08 19:04:24.570507', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.675950', '2017-11-08 19:04:24.675950', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.675950', '2017-11-08 19:04:24.675950', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.677378', '2017-11-08 19:04:24.677378', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.677378', '2017-11-08 19:04:24.677378', 298486374)[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.684641', '2017-11-08 19:04:24.684641', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.684641', '2017-11-08 19:04:24.684641', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.686588', '2017-11-08 19:04:24.686588', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.686588', '2017-11-08 19:04:24.686588', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "gossips"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.690927', '2017-11-08 19:04:24.690927', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "gossips" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.690927', '2017-11-08 19:04:24.690927', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "moussaillons"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.692184', '2017-11-08 19:04:24.692184', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "moussaillons" ("created_at", "updated_at", "id") VALUES ('2017-11-08 19:04:24.692184', '2017-11-08 19:04:24.692184', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
