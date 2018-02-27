@@ -1,24 +1,16 @@
-# README
+# cours_gossips
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Objet
+Créer une plateforme avec session utilisateur
+Ajout de gossip avec titre et body
+Une page accueil avec le récap de tous les gossips de tous les utilisateurs
 
-Things you may want to cover:
+## Aperçu
+![capture cours_gossips](https://user-images.githubusercontent.com/32294560/36738187-3839eaa2-1bdd-11e8-8947-20ad301cedf3.png)
 
-* Ruby version
+## Technique
++ Ruby on rails
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Apprentissage:
++ Gem Devise
++ Association de models
